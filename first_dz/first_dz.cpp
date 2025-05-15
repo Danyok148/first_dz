@@ -58,6 +58,7 @@ int main() {
     int hoursLeft = remaining / 3600;
     cout << "Осталось сидеть: " << hoursLeft << " ч." << endl;
 
+
     //  7
     double price;
     int qty;
