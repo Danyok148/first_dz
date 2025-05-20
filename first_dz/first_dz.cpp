@@ -1,145 +1,203 @@
 #include <iostream>
+#include <cmath>
+
 using namespace std;
 
 int main() {
-    //  1
-    int sec;
-    cout << "1. Введите время в секундах: ";
-    cin >> sec;
-    int days = sec / 86400;
-    int hours = (sec % 86400) / 3600;
-    int minutes = (sec % 3600) / 60;
-    int seconds = sec % 60;
-    cout << days << " дн., " << hours << " ч., " << minutes << " мин., " << seconds << " сек." << endl;
+    // 1
+    double a, b, x;
+    cout << "1. Введiть a i b: ";
+    cin >> a >> b;
 
-    //  2
-    int d, h, m, s;
-    cout << "\n2. Введите дни, часы, минуты, секунды: ";
-    cin >> d >> h >> m >> s;
-    int totalSec = d * 86400 + h * 3600 + m * 60 + s;
-    cout << "Всего секунд: " << totalSec << endl;
+    if (a > b) {
+        x = b - 5 * a;
+    }
+    else if (a == b) {
+        x = (5 - b) / a;
+    }
+    else {
+        x = (a - 5) / b;
+    }
+    cout << "X = " << x << endl;
 
-    //  3
-    double dist, time;
-    cout << "\n3. Введите расстояние (км) и время (ч): ";
-    cin >> dist >> time;
-    double speed = dist / time;
-    cout << "Скорость: " << speed << " км/ч" << endl;
+    // 2
+    double k;
+    cout << "\n2. Введiть коефiцiєнт нахилу прямої (k): ";
+    cin >> k;
+    if (k == 0) {
+        cout << "Пряма паралельна осi абсцис\n";
+    }
+    else {
+        cout << "Пряма не паралельна осi абсцис\n";
+    }
+
+    // 3
+    int qty;
+    double price, total, discount;
+    cout << "\n3. Введiть кiлькiсть товарiв та цiну за одиницю: ";
+    cin >> qty >> price;
+    total = qty * price;
+    discount = 0;
+    if (total >= 300) discount = total * 0.07;
+    else if (total >= 200) discount = total * 0.05;
+    else if (total >= 100) discount = total * 0.03;
+    cout << "Знижка: " << discount << endl;
 
     // 4
-    int h1, m1, s1, h2, m2, s2;
-    cout << "\n4. Введите время начала (ч м с): ";
-    cin >> h1 >> m1 >> s1;
-    cout << "Введите время конца (ч м с): ";
-    cin >> h2 >> m2 >> s2;
-    int t1 = h1 * 3600 + m1 * 60 + s1;
-    int t2 = h2 * 3600 + m2 * 60 + s2;
-    int dur = t2 - t1;
-    double cost = (dur / 60.0) * 0.3;
-    cout << "Стоимость разговора: " << cost << " грн" << endl;
+    double num;
+    cout << "\n4. Введiть дробове число: ";
+    cin >> num;
+    if (num == (int)num) {
+        cout << "Десяткова частина дорiвнює нулю\n";
+    }
+    else {
+        cout << "Є десяткова частина\n";
+    }
 
-    //  5
-    double uah, usd, eur, rub;
-    cout << "\n5. Введите сумму в грн и курсы (доллар, евро, рубль): ";
-    cin >> uah >> usd >> eur >> rub;
-    int d_usd = uah / usd;
-    int d_eur = uah / eur;
-    int d_rub = uah / rub;
-    double change = uah - d_usd * usd;
-    cout << "Можно купить: " << d_usd << " USD, " << d_eur << " EUR, " << d_rub << " RUB\n";
-    cout << "Сдача: " << change << " грн" << endl;
+    // 5
+    int day;
+    cout << "\n5. Введiть номер дня тижня (1-7): ";
+    cin >> day;
+    switch (day) {
+    case 1: cout << "Понедiлок\n"; break;
+    case 2: cout << "Вiвторок\n"; break;
+    case 3: cout << "Середа\n"; break;
+    case 4: cout << "Четвер\n"; break;
+    case 5: cout << "П'ятниця\n"; break;
+    case 6: cout << "Субота\n"; break;
+    case 7: cout << "Неділя\n"; break;
+    default: cout << "Неправильний номер\n";
+    }
 
-    //  6
-    int secFromStart;
-    cout << "\n6. Введите секунды с начала рабочего дня: ";
-    cin >> secFromStart;
-    int workDay = 8 * 3600;
-    int remaining = workDay - secFromStart;
-    int hoursLeft = remaining / 3600;
-    cout << "Осталось сидеть: " << hoursLeft << " ч." << endl;
+    // 6
+    double x6, y6;
+    cout << "\n6. Введiть координати точки (x, y): ";
+    cin >> x6 >> y6;
+    if (x6 == 0 && y6 == 0) cout << "Точка в початку координат\n";
+    else if (x6 == 0) cout << "Точка на осi Y\n";
+    else if (y6 == 0) cout << "Точка на осi X\n";
+    else if (x6 > 0 && y6 > 0) cout << "I чверть\n";
+    else if (x6 < 0 && y6 > 0) cout << "II чверть\n";
+    else if (x6 < 0 && y6 < 0) cout << "III чверть\n";
+    else cout << "IV чверть\n";
 
+    // 7
+    int currency;
+    double uah;
+    cout << "\n7. Введiть суму в гривнях: ";
+    cin >> uah;
+    cout << "1 - EUR, 2 - USD, 3 - RUB: ";
+    cin >> currency;
+    if (currency == 1) cout << "EUR: " << uah / 40 << endl;
+    else if (currency == 2) cout << "USD: " << uah / 37 << endl;
+    else if (currency == 3) cout << "RUB: " << uah * 2.5 << endl;
+    else cout << "Невiдома валюта\n";
 
-    //  7
-    double price;
-    int qty;
-    double discount;
-    cout << "\n7. Введите цену ноутбука, количество и скидку (%): ";
-    cin >> price >> qty >> discount;
-    double total = price * qty;
-    double finalPrice = total - (total * discount / 100);
-    cout << "Сумма со скидкой: " << finalPrice << " грн" << endl;
+    // 8
+    int d, m, y, h, min;
+    cout << "\n8. Введiть дату (день, мiсяць, рiк): ";
+    cin >> d >> m >> y;
+    cout << "Введiть час (години, хвилини): ";
+    cin >> h >> min;
+    if (d >= 1 && d <= 31 && m >= 1 && m <= 12 && y > 0 && h >= 0 && h < 24 && min >= 0 && min < 60)
+        cout << "Дата i час коректнi\n";
+    else
+        cout << "Некоректна дата або час\n";
 
-    //  8
-    double sales;
-    cout << "\n8. Введите сумму продаж менеджера: ";
-    cin >> sales;
-    double salary = 100 + (sales * 0.05);
-    cout << "Зарплата: " << salary << " $" << endl;
-
-    //  9
-    double filmSize, netSpeed;
-    cout << "\n9. Введите размер фильма (ГБ) и скорость (бит/сек): ";
-    cin >> filmSize >> netSpeed;
-    double bits = filmSize * 1024 * 1024 * 1024 * 8;
-    int secToDownload = bits / netSpeed;
-    int h = secToDownload / 3600;
-    int m = (secToDownload % 3600) / 60;
-    int s_down = secToDownload % 60;
-    cout << "Скачивание займет: " << h << " ч. " << m << " мин. " << s_down << " сек.\n";
+    // 9
+    int ticket;
+    cout << "\n9. Введiть номер квитка (6 цифр): ";
+    cin >> ticket;
+    int sum1 = 0, sum2 = 0;
+    sum1 += (ticket / 100000) % 10;
+    sum1 += (ticket / 10000) % 10;
+    sum1 += (ticket / 1000) % 10;
+    sum2 += (ticket / 100) % 10;
+    sum2 += (ticket / 10) % 10;
+    sum2 += ticket % 10;
+    if (sum1 == sum2) cout << "Щасливий квиток\n";
+    else cout << "Звичайний квиток\n";
 
     // 10
-    double flash;
-    cout << "\n10. Введите объем флешки (ГБ): ";
-    cin >> flash;
-    int flashMb = flash * 1024;
-    int films = flashMb / 760;
-    cout << "На флешку поместится " << films << " фильмов." << endl;
+    int age;
+    cout << "\n10. Введiть вiк: ";
+    cin >> age;
+    if (age >= 60) cout << "Пора на пенсiю\n";
+    else cout << "Ще працювати\n";
 
     // 11
-    double number;
-    cout << "\n11. Введите дробное число: ";
-    cin >> number;
-    number = (int)(number * 100 + 0.5) / 100.0;
-    cout << "Округленное до двух знаков: " << number << endl;
+    int card;
+    cout << "\n11. Введiть номер карти (0-35): ";
+    cin >> card;
+    int rank = card % 9 + 6;
+    int suit = card / 9;
+    cout << "Карта: ";
+    cout << rank;
+    if (suit == 0) cout << " пiка\n";
+    else if (suit == 1) cout << " хрести\n";
+    else if (suit == 2) cout << " бубни\n";
+    else if (suit == 3) cout << " черви\n";
+    else cout << " невiдома масть\n";
 
-    //  12
-    int passed, failed;
-    cout << "\n12. Введите кол-во сдавших и должников: ";
-    cin >> passed >> failed;
-    int totalStud = passed + failed;
-    double percPass = (passed * 100.0) / totalStud;
-    double percFail = (failed * 100.0) / totalStud;
-    cout << "Сдавшие: " << percPass << "%, Должники: " << percFail << "%" << endl;
+    // 12
+    int hour, minute;
+    cout << "\n12. Введiть час (години та хвилини): ";
+    cin >> hour >> minute;
+    if (hour >= 5 && hour < 12) cout << "Доброго ранку\n";
+    else if (hour >= 12 && hour < 18) cout << "Добрий день\n";
+    else if (hour >= 18 && hour < 22) cout << "Доброго вечора\n";
+    else cout << "Доброї ночi\n";
 
-    //  13
-    int daySec;
-    cout << "\n13. Введите количество секунд с начала дня: ";
-    cin >> daySec;
-    int secToMidnight = 86400 - daySec;
-    int hh = secToMidnight / 3600;
-    int mm = (secToMidnight % 3600) / 60;
-    int ss = secToMidnight % 60;
-    cout << "До полуночи: " << hh << " ч. " << mm << " мин. " << ss << " сек.\n";
+    // 13
+    double height, weight, ideal;
+    cout << "\n13. Введiть рiст i вагу: ";
+    cin >> height >> weight;
+    ideal = height - 110;
+    if (weight > ideal) cout << "Потрiбно схуднути на " << weight - ideal << " кг\n";
+    else if (weight < ideal) cout << "Потрiбно набрати " << ideal - weight << " кг\n";
+    else cout << "Ви маєте iдеальну вагу\n";
 
     // 14
-    double filmGb;
-    cout << "\n14. Введите объем фильма (ГБ): ";
-    cin >> filmGb;
-    double filmMb = filmGb * 1024;
-    int diskettes;
-    if ((int)(filmMb * 100) % 144 != 0)
-        diskettes = (int)(filmMb / 1.44) + 1;
-    else
-        diskettes = (int)(filmMb / 1.44);
-    cout << "Понадобится дискет: " << diskettes << endl;
+    int dd, mm, yy;
+    cout << "\n14. Введiть дату (день, мiсяць, рiк): ";
+    cin >> dd >> mm >> yy;
+    dd++;
+    if ((mm == 2 && dd > 28) || ((mm == 4 || mm == 6 || mm == 9 || mm == 11) && dd > 30) || dd > 31) {
+        dd = 1;
+        mm++;
+    }
+    if (mm > 12) {
+        mm = 1;
+        yy++;
+    }
+    cout << "Наступна дата: " << dd << "." << mm << "." << yy << endl;
 
     // 15
-    double deposit, rate;
-    int months;
-    cout << "\n15. Введите сумму вклада, срок (мес) и годовую ставку (%): ";
-    cin >> deposit >> months >> rate;
-    double result = deposit + deposit * (rate / 100.0) / 12 * months;
-    cout << "Итоговая сумма: " << result << " грн" << endl;
+    int number15, temp15, digit15, isAllPrime = 1;
+    cout << "\n15. Введiть п’ятизначне число: ";
+    cin >> number15;
+    temp15 = number15;
+    while (temp15 > 0) {
+        digit15 = temp15 % 10;
+        if (digit15 != 2 && digit15 != 3 && digit15 != 5 && digit15 != 7) {
+            isAllPrime = 0;
+            break;
+        }
+        temp15 /= 10;
+    }
+    if (isAllPrime) cout << "Число складається з простих цифр\n";
+    else cout << "Є непроста цифра\n";
+
+    // 16
+    int year16;
+    cout << "\n16. Введiть рiк: ";
+    cin >> year16;
+    if ((year16 % 4 == 0 && year16 % 100 != 0) || (year16 % 400 == 0)) {
+        cout << "Рiк високосний\n";
+    }
+    else {
+        cout << "Рiк не високосний\n";
+    }
 
     return 0;
 }
