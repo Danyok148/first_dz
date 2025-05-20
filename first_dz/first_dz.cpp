@@ -1,94 +1,88 @@
 #include <iostream>
-#include <windows.h> 
 using namespace std;
 
 int main() {
-    // 1
-    int num1;
-    cout << "1. Введiть число >= 1 для суми: ";
-    cin >> num1;
-    while (num1 < 1) {
-        cout << "Число має бути >= 1. Введiть ще раз: ";
-        cin >> num1;
-    }
-    int sum = 0;
-    for (int i = 0; i <= num1; i++) {
-        sum += i;
-    }
-    cout << "Сума вiд 0 до " << num1 << " = " << sum << endl;
+    const int SIZE = 20;
+    int arr[SIZE];
 
-    // 2
-    int num2;
-    cout << "\n2. Введiть число >= 1 для факторiалу: ";
-    cin >> num2;
-    while (num2 < 1) {
-        cout << "Число має бути >= 1. Введiть ще раз: ";
-        cin >> num2;
-    }
-    int fact = 1;
-    for (int i = 1; i <= num2; i++) {
-        fact *= i;
-    }
-    cout << "Факторiал числа " << num2 << " = " << fact << endl;
-
-    // 3
-    int num3;
-    cout << "\n3. Введiть число для таблицi множення: ";
-    cin >> num3;
-    for (int i = 1; i <= 10; i++) {
-        cout << num3 << " * " << i << " = " << (num3 * i) << endl;
+    
+    arr[0] = 0;
+    arr[1] = 1;
+    for (int i = 2; i < SIZE; i++) {
+        arr[i] = arr[i - 1] + arr[i - 2];
     }
 
-    // 4
-    int width;
-    cout << "\n4. Введiть ширину горизонтальної лiнiї >= 1: ";
-    cin >> width;
-    while (width < 1) {
-        cout << "Ширина має бути >= 1. Введiть ще раз: ";
-        cin >> width;
-    }
-
-    // 
-    system("Color 1E"); 
-
-    for (int i = 0; i < width; i++) {
-        cout << "*";
+    cout << "Масив Фiбонначi:\n";
+    for (int i = 0; i < SIZE; i++) {
+        cout << arr[i] << " ";
     }
     cout << endl;
 
-    // 5
-    int height;
-    cout << "\n5. Введiть висоту вертикальної лiнiї >= 1: ";
-    cin >> height;
-    while (height < 1) {
-        cout << "Висота має бути >= 1. Введiть ще раз: ";
-        cin >> height;
+   
+    cout << "\nПарнi значення:\n";
+    for (int i = 0; i < SIZE; i++) {
+        if (arr[i] % 2 == 0) {
+            cout << arr[i] << " ";
+        }
+    }
+    cout << endl;
+
+    
+    cout << "\nВiд'ємнi значення:\n";
+    for (int i = 0; i < SIZE; i++) {
+        if (arr[i] < 0) {
+            cout << arr[i] << " ";
+        }
+    }
+    cout << "(немає вiд'ємних, бо ряд Фiбонначi завжди >= 0)\n";
+
+    
+    int sum = 0;
+    for (int i = 0; i < SIZE; i++) {
+        sum += arr[i];
+    }
+    cout << "\nСума елементiв масиву: " << sum << endl;
+
+    
+    double average = sum / (double)SIZE;
+    cout << "Середнє значення: " << average << endl;
+
+    
+    int search;
+    cout << "\nВведiть число для пошуку: ";
+    cin >> search;
+    bool found = false;
+    for (int i = 0; i < SIZE; i++) {
+        if (arr[i] == search) {
+            cout << "Число знайдено. Iндекс: " << i << endl;
+            found = true;
+            break;
+        }
+    }
+    if (!found) {
+        cout << "Числа не є частиною массива.\n";
     }
 
     
-    system("Color 2F"); 
-
-    for (int i = 0; i < height; i++) {
-        cout << "*" << endl;
-    }
-
-    // 6
-    cout << "\n6. Таблиця множення вiд 1 до 10:\n";
-    for (int i = 1; i <= 10; i++) {
-        for (int j = 1; j <= 10; j++) {
-            cout << i << " * " << j << " = " << (i * j) << endl;
+    int max = arr[0];
+    int min = arr[0];
+    for (int i = 1; i < SIZE; i++) {
+        if (arr[i] > max) {
+            max = arr[i];
+        }
+        if (arr[i] < min) {
+            min = arr[i];
         }
     }
+    cout << "\nМаксимальне значення: " << max << endl;
+    cout << "Мiнiмальне значення: " << min << endl;
 
-    // 7
-    cout << "\n7. Квадратна таблиця множення (1-9):\n";
-    for (int i = 1; i <= 9; i++) {
-        for (int j = 1; j <= 9; j++) {
-            cout << (i * j);
-            if (j < 9) cout << "\t";
-        }
-        cout << endl;
+   
+    cout << "\nМасив у зворотньому порядку:\n";
+    for (int i = SIZE - 1; i >= 0; i--) {
+        cout << arr[i] << " ";
     }
+    cout << endl;
 
     return 0;
 }
